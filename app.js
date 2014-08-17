@@ -3,15 +3,10 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var connect = require('connect');
 
 var routes = require('./routes/index');
 
 var app = express();
-
-// gzip/deflate outgoing responses
-var compression = require('compression');
-app.use(compression());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
