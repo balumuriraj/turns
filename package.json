@@ -13,7 +13,8 @@
     "body-parser": "~1.0.0",
     "debug": "~0.7.4",
     "ejs": "~0.8.5",
-    "less-middleware": "1.0.x"
+    "less-middleware": "1.0.x",
+    "connect": "3.0"
   },
     "repository": {
         "type": "git",
