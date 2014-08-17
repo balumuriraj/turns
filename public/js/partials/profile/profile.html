@@ -1,0 +1,52 @@
+<section class="ngview-section" ng-show="userloggedin.value">
+    <div ng-controller="profile-Controller" class="wrap">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-lg-5">
+                    <section class="profile-section">
+                        <div class="profile-background"></div>
+                        <div class="profile-details">
+                            <div class="profile-icon"><img src="images/svg/avatar.svg" /></div>
+                            <p class="profile-name">{{currentuser.name}}</p>
+                            <p class="profile-email">{{currentuser.email}}</p>
+                        </div>
+                    </section>
+                    <section class="counter-block">
+                        <div class="counter1" ng-click="gotofriendspage()">
+                            <p>Friends</p>
+                            <p>{{currentuser.friends.length}}</p>
+                        </div>
+                        <div class="counter2" ng-click="gotoactivitiespage()">
+                            <p>Activities</p>
+                            <p>{{currentuser.activities.length}}</p>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-md-6 col-lg-7">
+                    <section class="profile-list-section">
+                        <p class="section-title">Activities</p>
+                        <br>
+                        <div class="profile-list-block" ng-repeat="activity in currentuser.activities">
+                            <div class="activity-details">
+                                <p>{{activity.name}}</p>
+                                <p>{{activity.members.length}} members</p>
+                                <p><span ng-class="activity.icon"></span> </p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $('#dashboard').removeClass("side-menu-active");
+    $('#activities').removeClass("side-menu-active");
+    $('#friends').removeClass("side-menu-active");
+    $('#settings').removeClass("side-menu-active");
+
+    document.getElementById("page-title").innerHTML = "Profile";
+    $('#activities-menu').hide();
+
+</script>

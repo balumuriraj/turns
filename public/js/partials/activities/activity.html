@@ -1,0 +1,158 @@
+<section class="ngview-section" ng-show="userloggedin.value">
+    <div ng-controller="activity-Controller" class="wrap">
+
+        <!-- Add member Modal -->
+        <div class="add-member-container" id="add-member-container">
+            <div class="modal-main-section">
+                <form name="addMemberForm" ng-submit="submitForm(addMemberForm.$valid)" novalidate>
+                    <div class="title-block">
+                        <p class="title-text">Add Member</p>
+                        <p class="close-modal" onclick="closeaddmember()"><span class="icon-x"></span> </p>
+                    </div>
+                    <div class="main-block">
+                        <!-- NAME -->
+                        <div class="form-group">
+                            <input type="text" name="name"  placeholder="Name" ng-model="thismember.name" ng-minlength="3" ng-maxlength="20" required>
+                            <p ng-show="addMemberForm.name.$error.required && !addMemberForm.name.$pristine" class="login-error">Name is required</p>
+                            <p ng-show="addMemberForm.name.$error.minlength && !addMemberForm.name.$pristine" class="login-error">Min length is 3</p>
+                            <p ng-show="addMemberForm.name.$error.maxlength && !addMemberForm.name.$pristine" class="login-error">Max length is 20</p>
+                        </div>
+
+                        <!-- EMAIL -->
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email Address" ng-model="thismember.emailId" required>
+                            <p ng-show="addMemberForm.email.$error.required && !addMemberForm.email.$pristine" class="login-error">Email is required</p>
+                            <p ng-show="addMemberForm.email.$error.email && !addMemberForm.email.$pristine" class="login-error">Email is invalid</p>
+                        </div>
+
+                    </div>
+
+                    <div ng-show="inputerror" class="service-error">Something went wrong! Please Try again..</div>
+                    <button ng-show="false" ng-disabled="addMemberForm.$invalid" id="addmemberbttn"></button>
+
+                    <div class="bttn-section">
+                        <div class="submit-bttn" ng-hide="memberloading" onclick="document.getElementById('addmemberbttn').click()">Submit</div>
+                        <div class="submiting-bttn" ng-show="memberloading"><i class="fa fa-spinner fa-spin"></i> Submiting...</div>
+                        <div class="cancel-bttn" ng-hide="memberloading" onclick="closeaddmember()">Cancel</div>
+                        <div class="submit-bttn" ng-show="memberloading">Cancel</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-md-7 col-lg-8">
+                    <section class="feed-container">
+                        <div class="activity-feed-title clearfix">
+                            <p>Log</p>
+                        </div>
+                        <div class="feed-content-section">
+                            <div class="timelineBar"></div>
+                            <div class="feed-block clearfix" ng-repeat="log in logs | orderBy: 'timeStamp':true">
+                                <div class="date-block">
+                                    <div class="date-section">
+                                        <p><span>{{log.timeStamp | date: 'dd'}}</span> {{log.timeStamp | date: 'MMM, yyyy'}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="feed-icon"><p><span class="icon-rocket3"></span></p></div>
+
+                                <div class="log-block clearfix">
+
+                                    <div class="name-section">
+                                        <p>{{log.member.name}}</p>
+                                        <p>has completed this activity at {{log.timeStamp | date: 'HH:mm'}}</p>
+                                        <div class="action-section">
+                                            <p ng-hide="deleteloading" ng-click="deleteturn(log.id)"><span class="icon-x"></span> </p>
+                                            <p ng-show="deleteloading"><i class="fa fa-spinner fa-spin"></i> </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                <div class="col-sm-12 col-md-5 col-lg-4">
+                    <section class="activity-container">
+                        <div class="activity-title-block clearfix" ng-style="{background: thisactivity.color}">
+                            <div><span ng-class="thisactivity.icon" ></span> </div>
+                            <div>
+                                <p>{{thisactivity.name}}</p>
+                                <p>{{thisactivity.members.length}} members</p>
+                            </div>
+                            <div>
+                                <span class="icon-cog" onclick="$('.activity-action').toggle()"></span>
+                            </div>
+                        </div>
+                        <div class="activity-action">
+                            <div>
+                                <button ng-click="addmembertoactivity()">Add Member</button>
+                            </div>
+                            <div>
+                                <button onclick="$('.delbuttons').toggle()">Delete Member</button>
+                            </div>
+                        </div>
+                        <div class="activity-member-block clearfix" ng-repeat="member in thisactivity.members">
+                            <div><span class="icon-user2" ></span></div>
+                            <div>
+                                <p>{{member.name}}</p>
+                                <p>{{member.emailId}}</p>
+                            </div>
+                            <div class="delbuttons">
+                                <span ng-hide="deletememberloading" class="icon-x" ng-click="deletememberfromactivity(member)"></span>
+                                <i ng-show="deletememberloading" class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $('#dashboard').removeClass("side-menu-active");
+    $('#activities').addClass("side-menu-active");
+    $('#friends').removeClass("side-menu-active");
+    $('#settings').removeClass("side-menu-active");
+
+    document.getElementById("page-title").innerHTML = "Activity";
+
+    $('.activity-action').hide();
+    $('.delbuttons').hide();
+
+    function addmembercontaineropen() {
+        var member = $('#add-member-container');
+        member.css({
+            'visibility': 'visible',
+            'top': '50%',
+            'opacity': '1'
+        });
+    }
+
+    function addmembercontainerclose() {
+        var member = $('#add-member-container');
+        member.css({
+            'visibility': 'hidden',
+            'top': '45%',
+            'opacity': '0'
+        });
+    }
+
+    function openaddmember() {
+        addmembercontaineropen();
+        backgroundcoveropen();
+    }
+
+    function closeaddmember() {
+        addmembercontainerclose();
+        backgroundcoverclose();
+    }
+
+</script>
+
+</div>

@@ -1,0 +1,49 @@
+<section class="ngview-section" ng-show="userloggedin.value">
+    <div ng-controller="all-activities-Controller" class="wrap">
+        <div class="container-fluid allactivities-page">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="all-activities-container">
+                        <div class="item-block" ng-repeat="activity in useractivities | filter:searchactivity" ng-click="openactivity(activity.id)">
+                            <div><p style="background: {{activity.color}}"><span class="{{activity.icon}}"></span></p></div>
+                            <div class="box-label">
+                                <p>{{activity.name | truncate}}</p>
+                                <p>
+                                    <span ng-if="activity.members.length == 1">{{activity.members.length}} member</span>
+                                    <span ng-if="activity.members.length > 1">{{activity.members.length}} members</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="item-block" ng-click="addactivity()">
+                            <div><p style="background: #ccc"><span class="icon-plus"></span></p></div>
+                            <div class="box-label">
+                                <p>Add Activity</p>
+                                <p>Click here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                <div class="col-md-4">
+                    <div class="search-count-container">
+                        <p><span>{{(useractivities | filter:searchactivity).length}}</span> activities</p>
+                    </div>
+
+                    <div class="search-container">
+                        <input type="text" ng-model="searchactivity" placeholder="search... "/>
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $('#dashboard').removeClass("side-menu-active");
+    $('#activities').addClass("side-menu-active");
+    $('#friends').removeClass("side-menu-active");
+    $('#settings').removeClass("side-menu-active");
+
+    document.getElementById("page-title").innerHTML = "Activities/All";
+</script>

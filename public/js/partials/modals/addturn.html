@@ -1,0 +1,141 @@
+
+<div class="add-turn-container" id="add-turn-container">
+    <div class="modal-main-section">
+        <div class="title-block">
+            <p class="title-text">Add Turn</p>
+            <p class="close-modal" onclick="closeaddturn()"><span class="icon-x"></span> </p>
+        </div>
+        <div class="main-block">
+
+            <div class="member-block" onclick="showmemberlist()">
+                <span class="icon-user3"></span>
+                <div>
+                    <p>{{mainuser.name}}</p>
+                    <p>{{mainuser.email}}</p>
+                </div>
+            </div>
+            <div class="activity-block" onclick="showactivitylist()">
+                <span ng-class="currentactivity.icon"></span>
+                <div>
+                    <p>{{currentactivity.name}}</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div ng-show="inputerror" class="service-error">Something went wrong! Please Try again..</div>
+
+        <div class="bttn-section">
+            <div class="submit-bttn" ng-hide="loading" ng-click="submitturn()">Submit</div>
+            <div class="submiting-bttn" ng-show="loading"><i class="fa fa-spinner fa-spin"></i> Submiting...</div>
+            <div class="cancel-bttn" ng-hide="loading" onclick="closeaddturn()">Cancel</div>
+            <div class="submit-bttn" ng-show="loading">Cancel</div>
+        </div>
+    </div>
+</div>
+
+<div class="list-section" id="list-friends-section">
+    <div class="modal-main-section">
+        <div class="title-block">
+            <p class="title-text">Whose turn?</p>
+            <p class="close-modal" onclick="closememberlist()"><span class="icon-x"></span> </p>
+        </div>
+        <div class="main-block">
+            <div class="member-block" ng-repeat="mem in currentactivity.members"  ng-click="selectmember(mem)">
+                <span class="icon-user3"></span>
+                <div>
+                    <p>{{mem.name}}</p>
+                    <p>{{mem.emailId}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="list-section" id="list-activities-section">
+    <div class="modal-main-section">
+        <div class="title-block">
+            <p class="title-text">Which Activity?</p>
+            <p class="close-modal" onclick="closeactivitylist()"><span class="icon-x"></span> </p>
+        </div>
+        <div class="main-block">
+            <div class="activity-block" ng-repeat="act in mainuser.activities" ng-click="selectactivity(act)">
+                <span ng-class="act.icon" ng-style="{'background': act.color}"></span>
+                <div>
+                    <p>{{act.name}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function addturncontaineropen() {
+        var turn = $('#add-turn-container');
+        turn.css({
+            'visibility': 'visible',
+            'top': '50%',
+            'opacity': '1'
+        });
+    }
+
+    function addturncontainerclose() {
+        var turn = $('#add-turn-container');
+        turn.css({
+            'visibility': 'hidden',
+            'top': '45%',
+            'opacity': '0'
+        });
+    }
+
+    function openaddturn() {
+        addturncontaineropen();
+        backgroundcoveropen();
+    }
+
+    function closeaddturn() {
+        addturncontainerclose();
+        backgroundcoverclose();
+    }
+
+    function showmemberlist() {
+        addturncontainerclose();
+        var members = $('#list-friends-section');
+        members.css({
+            'visibility': 'visible',
+            'top': '50%',
+            'opacity': '1'
+        });
+    }
+
+    function closememberlist() {
+        addturncontaineropen();
+        var members = $('#list-friends-section');
+        members.css({
+            'visibility': 'hidden',
+            'top': '45%',
+            'opacity': '0'
+        });
+    }
+
+    function showactivitylist() {
+        addturncontainerclose();
+        var members = $('#list-activities-section');
+        members.css({
+            'visibility': 'visible',
+            'top': '50%',
+            'opacity': '1'
+        });
+    }
+
+    function closeactivitylist() {
+        addturncontaineropen();
+        var members = $('#list-activities-section');
+        members.css({
+            'visibility': 'hidden',
+            'top': '45%',
+            'opacity': '0'
+        });
+    }
+</script>

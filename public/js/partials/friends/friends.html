@@ -1,0 +1,109 @@
+<section class="ngview-section" ng-show="userloggedin.value">
+    <div ng-controller="friends-Controller" class="wrap">
+
+        <!-- Add friend Modal -->
+        <div class="add-friend-container" id="add-friend-container">
+            <div class="modal-main-section">
+                <form name="addfriendForm" ng-submit="submitForm(addfriendForm.$valid)" novalidate>
+                    <div class="title-block">
+                        <p class="title-text">Add Friend</p>
+                        <p class="close-modal" onclick="closeaddfriend()"><span class="icon-x"></span> </p>
+                    </div>
+                    <div class="main-block">
+                        <!-- NAME -->
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Name" ng-model="friend.name" ng-minlength="3" ng-maxlength="10" required>
+                            <p ng-show="addfriendForm.name.$error.required && !addfriendForm.name.$pristine" class="input-error">Name is required <span class="icon-x"></span>
+                            </p>
+                            <p ng-show="addfriendForm.name.$error.minlength && !addfriendForm.name.$pristine" class="input-error">Min length is 3 <span class="icon-x"></span>
+                            </p>
+                            <p ng-show="addfriendForm.name.$error.maxlength && !addfriendForm.name.$pristine" class="input-error-error">Max length is 10 <span class="icon-x"></span>
+                            </p>
+                        </div>
+
+                        <!-- EMAIL -->
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email Address" ng-model="friend.emailId" required>
+                            <p ng-show="addfriendForm.email.$error.required && !addfriendForm.email.$pristine" class="input-error">Email is required <span class="icon-x"></span>
+                            </p>
+                            <p ng-show="addfriendForm.email.$error.email && !addfriendForm.email.$pristine" class="input-error">Email is invalid <span class="icon-x"></span>
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div ng-show="inputerror" class="service-error">Something went wrong! Please Try again..</div>
+                    <button ng-show="false" ng-disabled="addMemberForm.$invalid" id="addfriendbttn"></button>
+
+                    <div class="bttn-section">
+                        <div class="submit-bttn" ng-hide="loading" onclick="document.getElementById('addfriendbttn').click()">Submit</div>
+                        <div class="submiting-bttn" ng-show="loading"><i class="fa fa-spinner fa-spin"></i> Submiting...</div>
+                        <div class="cancel-bttn" ng-hide="loading" onclick="closeaddfriend()">Cancel</div>
+                        <div class="submit-bttn" ng-show="loading">Cancel</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="container-fluid friends-page">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="friends-container">
+                        <div class="item-block" ng-repeat="friend in userfriends | filter:searchfriend" ng-click="gotofriend(friend.email);">
+                            <div><p style="background: #f06060"><span class="icon-user2"></span></p></div>
+                            <div class="box-label">
+                                <p>{{friend.name | truncate:15}}</p>
+                                <p>{{friend.email | truncate:15}}</p>
+                            </div>
+                        </div>
+                        <div class="item-block" ng-click="addfriend()">
+                            <div><p style="background: #ccc"><span class="icon-plus"></span></p></div>
+                            <div class="box-label">
+                                <p>Add Friend</p>
+                                <p>Click here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $('#dashboard').removeClass("side-menu-active");
+    $('#activities').removeClass("side-menu-active");
+    $('#friends').addClass("side-menu-active");
+    $('#settings').removeClass("side-menu-active");
+
+    document.getElementById("page-title").innerHTML = "Friends";
+
+    function addfriendcontaineropen() {
+        var member = $('#add-friend-container');
+        member.css({
+            'visibility': 'visible',
+            'top': '50%',
+            'opacity': '1'
+        });
+    }
+
+    function addfriendcontainerclose() {
+        var member = $('#add-friend-container');
+        member.css({
+            'visibility': 'hidden',
+            'top': '45%',
+            'opacity': '0'
+        });
+    }
+
+    function openaddfriend() {
+        addfriendcontaineropen();
+        backgroundcoveropen();
+    }
+
+    function closeaddfriend() {
+        addfriendcontainerclose();
+        backgroundcoverclose();
+    }
+
+</script>

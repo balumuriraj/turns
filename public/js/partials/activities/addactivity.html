@@ -1,0 +1,118 @@
+<section class="ngview-section" ng-show="userloggedin.value">
+
+    <div ng-controller="add-activity-Controller" class="wrap">
+        <div class="add-activity-container">
+            <form name="addActivityForm" ng-submit="submitForm(addActivityForm.$valid)" novalidate>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="form-container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <!-- ACTIVITY NAME -->
+                                    <div class="form-group">
+                                        <p>Enter an Activity Name</p>
+                                        <input type="text" name="activityname" class="inputfield" placeholder="Activity Name" ng-model="activity.name" required>
+                                        <p ng-show="addActivityForm.activityname.$error.required && !addActivityForm.activityname.$pristine" class="input-error">Activity name is required <span class="icon-x"></span>
+                                        </p>
+                                    </div>
+
+                                    <!-- SELECT COLOR -->
+                                    <div class="form-group">
+                                        <p>Select a color for you Activity</p>
+                                        <input type="hidden" name="groupcolor" value="{{activity.color}}">
+                                        <div class="color-picker">
+                                            <ul>
+                                                <li ng-repeat="color in colors.id" ng-click="changecolor(color)" style="background: {{color}};"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-4">
+                                    <!-- SELECT ICON -->
+                                    <div class="form-group">
+                                        <p>Select an icon for you Activity</p>
+                                        <input type="hidden" name="groupicon" value="{{activity.icon}}">
+                                        <div class="icon-picker">
+                                            <ul>
+                                                <li ng-repeat="icon in icons.id" ng-click="changeicon(icon)"><span class="{{icon}}"></span> </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <p class="members-title">Members</p>
+                                        <div class="new-member-list">
+                                            <ul>
+                                                <li ng-repeat="member in activity.members" ng-show="!$first">
+                                                    <div class="list-fields">
+                                                        <input type="text" name="membername-{{$index}}" placeholder="Enter Name" ng-model="member.name" required>
+                                                    </div>
+                                                    <div class="list-fields">
+                                                        <input type="text" name="memberemail-{{$index}}" placeholder="Enter Email" ng-model="member.emailId" required>
+                                                    </div>
+                                                    <div class="list-fields">
+                                                        <p ng-click="removeFriend($index)"><span class="icon-x"></span></p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="add-button-section">
+                                            <button class="friend-bttn"><span class="icon-user-add"></span> Add Friend</button>
+                                            <button class="friend-bttn" ng-click="inviteFriend()"><span class="icon-mail"></span> Invite Friend</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-title">
+                                        <div><p style="background: {{activity.color}}"><span class="{{activity.icon}}"></span></p></div>
+                                        <div class="activity-label">
+                                            <p>{{activity.name | truncate}}</p>
+                                            <p>
+                                                <span ng-if="activity.members.length == 1">{{activity.members.length}} member</span>
+                                                <span ng-if="activity.members.length > 1">{{activity.members.length}} members</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="members-list-section">
+
+                                        <div class="member-list">
+                                            <ul>
+                                                <li ng-repeat="member in activity.members"><span class="icon-user2"></span> {{member.name | truncate}} ({{member.emailId | truncate:15}})</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="button-section">
+                                        <div class="row">
+                                            <!-- SUBMIT BUTTON -->
+                                            <button ng-hide="loading" type="submit" class="form-bttn" ng-disabled="userSignupForm.$invalid">Create Activity</button>
+                                            <button ng-show="loading" class="bttn-submitting"><i class="fa fa-spinner fa-spin"></i> Creating Activity..</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+
+    </div>
+</section>
+
+<script type="text/javascript">
+    $('#dashboard').removeClass("side-menu-active");
+    $('#activities').addClass("side-menu-active");
+    $('#friends').removeClass("side-menu-active");
+    $('#settings').removeClass("side-menu-active");
+
+    document.getElementById("page-title").innerHTML = "Activities/Add Activity";
+    $('#activities-menu').hide();
+
+    function toggleactivites() {
+        $('#activities-menu').toggle();
+    }
+</script>

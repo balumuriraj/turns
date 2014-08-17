@@ -1,0 +1,85 @@
+<section class="ngview-section" ng-show="userloggedin.value">
+    <div ng-controller="dashboard-Controller" class="wrap">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <section class="turn-status-container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="turn-status">
+                                    <p style="color: #47a3da">25 </p>
+                                    <p> Turns completed</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="turn-status">
+                                    <p style="color: #7ea568">7 </p>
+                                    <p> Turns inadvance</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="turn-status">
+                                    <p style="color: #f06060">4 </p>
+                                    <p> Turns remaining</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="turns-pending-container">
+                        <div>
+                            <p>Turns pending today</p>
+                        </div>
+                        <div>
+
+                        </div>
+                    </section>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="dashboard-date">
+                        <p>{{currentdate | date: 'dd'}}</p>
+                        <p><span class="icon-calendar3"></span>
+                        </p>
+                        <p>{{currentdate | date: 'MMM'}}</p>
+                        <p>You have 2 turns today</p>
+                    </div>
+                    <div class="dashboard-side-container">
+                        <div>
+                            <p>{{userdetails.friends.length}}</p>
+                            <p>Friends</p>
+                        </div>
+                        <div>
+                            <p>{{userdetails.groups.length}}</p>
+                            <p>Activities</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script type="text/javascript">
+    $('#dashboard').addClass("side-menu-active");
+    $('#activities').removeClass("side-menu-active");
+    $('#friends').removeClass("side-menu-active");
+    $('#settings').removeClass("side-menu-active");
+
+    document.getElementById("page-title").innerHTML = "Dashboard";
+    $('#activities-menu').hide();
+
+    function showbutton(obj) {
+        $(obj).children("div").css({
+            'top': '0'
+        });
+    }
+
+    function hidebutton(obj) {
+        $(obj).children("div").css({
+            'top': '-15em'
+        });
+    }
+</script>

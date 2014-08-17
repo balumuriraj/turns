@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" ng-app="turns">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Turns</title>
+    <meta name="description" content="Turns - Count the turns with your friends">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/icons.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/home-styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/media-queries.css">
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+
+<body ng-controller="god-Controller">
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- HEADER AND NAVBAR -->
+
+<div class="background-cover" id="background-cover"></div>
+
+<div ng-show="userloggedin.value">
+    <div ng-include="'/js/partials/menus/app-menu.html'"></div>
+</div>
+
+<div ng-hide="userloggedin.value">
+    <div ng-include="'/js/partials/menus/main-menu.html'"></div>
+</div>
+
+<div ng-include="'/js/partials/modals/addturn.html'"></div>
+
+<!-- MAIN CONTENT AND INJECTED VIEWS -->
+<section class="angular-section">
+
+    <!-- angular templating -->
+    <!-- this is where content will be injected -->
+    <div ng-view></div>
+
+</section>
+
+<footer class="footer-container" ng-hide="userloggedin.value">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="rights-section">
+                    <img src="/images/logo.png" class="footer-logo" /> <span>turns</span>
+                    <br><br>
+                    <p>Copyright © 2014 turns, Inc. All rights reserved.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="social-options-container">
+                    <div class="social-options">
+                        <span class="icon-facebook" style="background: #4c66a4;"></span>
+                        <span class="icon-twitter" style="background: #47a3da;"></span>
+                        <span class="icon-googleplus" style="background: #f06060;"></span>
+                        <span class="icon-mail" style="background: #34495e;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- JS Libs -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-route.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-cookies.min.js" type="text/javascript"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<!-- UI Libs -->
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/plugins.js"></script>
+<script src="/js/main.js"></script>
+
+<!-- App Libs -->
+<script src="/js/app.js" type="text/javascript"></script>
+<script src="/js/angularLocalStorage.js" type="text/javascript"></script>
+<script src="/js/controllers/controllers.js" type="text/javascript"></script>
+<script src="/js/controllers/activity-controller.js" type="text/javascript"></script>
+<script src="/js/controllers/dashboard-controller.js" type="text/javascript"></script>
+<script src="/js/controllers/friend-controller.js" type="text/javascript"></script>
+<script src="/js/controllers/settings-controller.js" type="text/javascript"></script>
+<script src="/js/controllers/user-controller.js" type="text/javascript"></script>
+<script src="/js/controllers/profile-controller.js" type="text/javascript"></script>
+<script src="/js/services/user_service.js" type="text/javascript"></script>
+<script src="/js/services/friend_service.js" type="text/javascript"></script>
+<script src="/js/services/activity_service.js" type="text/javascript"></script>
+<script src="/js/filters/truncateFilter.js" type="text/javascript"></script>
+
+<!-- Custom Libs -->
+<script src="/js/custom/homepage.js" type="text/javascript"></script>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function (b, o, i, l, e, r) {
+        b.GoogleAnalyticsObject = l;
+        b[l] || (b[l] =
+                function () {
+                    (b[l].q = b[l].q || []).push(arguments)
+                });
+        b[l].l = +new Date;
+        e = o.createElement(i);
+        r = o.getElementsByTagName(i)[0];
+        e.src = '//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e, r)
+    }(window, document, 'script', 'ga'));
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+</script>
+
+
+</body>
+
+</html>

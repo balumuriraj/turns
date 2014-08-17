@@ -1,0 +1,40 @@
+<section class="ngview-section" ng-show="userloggedin.value">
+    <div ng-controller="activities-Controller" class="wrap">
+        <div class="activities-logo-container">
+            <div class="activities-logo-block" onmouseover="showactivitiesbuttn()" onmouseout="hideactivitiesbuttn()">
+                <span class="icon-rocket3"></span>
+                <p id="show-activities-button">
+                    <a href="#/activities/allActivities">show activities</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $('#dashboard').removeClass("side-menu-active");
+    $('#activities').addClass("side-menu-active");
+    $('#friends').removeClass("side-menu-active");
+    $('#settings').removeClass("side-menu-active");
+
+    document.getElementById("page-title").innerHTML = "Activities";
+    $('#activities-menu').show();
+
+    function toggleactivites() {
+        $('#activities-menu').toggle();
+    }
+
+    function showactivitiesbuttn() {
+        $('#show-activities-button').css({
+            'opacity': '1',
+            'margin-top': '0'
+        });
+    }
+
+    function hideactivitiesbuttn() {
+        $('#show-activities-button').css({
+            'opacity': '0',
+            'margin-top': '10em'
+        });
+    }
+</script>

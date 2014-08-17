@@ -1,0 +1,73 @@
+<header>
+    <nav class="headbar">
+        <div class="contianer-fluid">
+            <div class="headbar-header wrap clearfix">
+                <div class="headbar-logo" href="/">
+                    <img src="images/logo.png" class="logo" />
+                </div>
+                <div id="page-title"></div>
+                <!-- <a href="" class="headbar-account" ng-click="signout()"><span class="icon-sign-out"></span></a> -->
+
+                <a href="" class="headbar-account" id="headbar-account" onclick="headbaraccount()">
+                    <div><img src="images/svg/avatar.svg" /> </div>
+                    <div>
+                        <p>{{userdetails.name}}</p>
+                        <p>{{userdetails.email}}</p>
+                    </div>
+                    <div><span class="icon-angle-down"></span></div>
+                </a>
+
+                <button class="clearfix" ng-click="addturn()"><i class="fa fa-plus"></i> Add Turn</button>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="account-dropdown-menu" id="dropdownmenu">
+    <ul>
+        <li><a href="#/profile" class="menu-item"><span class="icon-user2"></span> <p>Profile</p></a></li>
+        <li><a href="" class="menu-item" ng-click="signout()"><span class="icon-sign-out"></span> <p>Sign out</p></a></li>
+    </ul>
+</div>
+
+<div class="side-menu-container">
+    <nav class="side-menu">
+        <ul>
+            <li id="dashboard">
+                <a href="#/dashboard">
+                    <div><img src="images/svg/home.svg" /></div>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li id="activities">
+                <!--<a href="#/activities" onclick="toggleactivites()">-->
+                <a href="#/activities/allActivities">
+                    <div><img src="images/svg/paper-bag.svg" /></div>
+                    <p>Activities</p>
+                </a>
+            </li>
+            <li id="friends">
+                <a href="#/friends">
+                    <div><img src="images/svg/pencils.svg" /></div>
+                    <p>Friends</p>
+                </a>
+            </li>
+            <li id="settings">
+                <a href="#/settings">
+                    <div><img src="images/svg/settings-gear.svg" /></div>
+                    <p>Settings</p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<script type="text/javascript">
+
+    $('#dropdownmenu').hide();
+    function headbaraccount() {
+        $('#headbar-account').toggleClass("headbar-account-active");
+        $('#dropdownmenu').toggle();
+    }
+</script>

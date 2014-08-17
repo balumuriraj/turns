@@ -1,0 +1,50 @@
+<section class="ngview-section" ng-show="userloggedin.value">
+    <div ng-controller="settings-Controller" class="wrap">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <section class="settings-list-section">
+                        <p class="section-title">Activities</p>
+                        <br>
+                        <div class="settings-list-block" ng-repeat="activity in currentuser.activities">
+                            <div class="settings-details">
+                                <p>{{activity.name}}</p>
+                                <p>{{activity.members.length}} members</p>
+                                <button ng-hide="activityloading" ng-click="deleteactivity(activity)"><i class="fa fa-trash-o"></i> delete</button>
+                                <button ng-show="activityloading"><i class="fa fa-spinner fa-spin"></i> deleting..</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-md-4">
+                    <section class="settings-list-section">
+                        <p class="section-title">Friends</p>
+                        <br>
+                        <div class="settings-list-block" ng-repeat="friend in currentuser.friends">
+                            <div class="settings-details">
+                                <p>{{friend.name}}</p>
+                                <p>{{friend.email}}</p>
+                                <button ng-hide="friendloading" ng-click="deletefriend(friend)"><i class="fa fa-trash-o"></i> delete</button>
+                                <button ng-show="friendloading"><i class="fa fa-spinner fa-spin"></i> deleting..</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $('#dashboard').removeClass("side-menu-active");
+    $('#activities').removeClass("side-menu-active");
+    $('#friends').removeClass("side-menu-active");
+    $('#settings').addClass("side-menu-active");
+
+    document.getElementById("page-title").innerHTML = "Settings";
+    $('#activities-menu').hide();
+
+</script>
