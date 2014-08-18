@@ -1,35 +1,38 @@
 <!-- Login -->
 <div class="login-container" ng-controller="login-Controller" id="login-container">
-    <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
-        <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
-        <div class="form-title clearfix">
-            <p>Sign in</p>
-            <p onclick="closesignin()"><span class="icon-x"></span>
-            </p>
-        </div>
-        <br>
-        <br>
-        <!-- EMAIL -->
-        <div class="form-group">
-            <input type="email" name="email" class="login-field" id="email-field" placeholder="Email Address" ng-model="user.email" required>
-            <p ng-show="userForm.email.$error.required && !userForm.email.$pristine" class="login-error">Email is required <span class="icon-x"></span>
-            </p>
-            <p ng-show="userForm.email.$error.email && !userForm.email.$pristine" class="login-error">Email is invalid <span class="icon-x"></span>
-            </p>
-        </div>
-        <!-- PASWWORD -->
-        <div class="form-group">
-            <input type="password" name="password" class="login-field" id="password-field" placeholder="Password" ng-model="user.password" required>
-            <p ng-show="userForm.password.$error.required && !userForm.password.$pristine" class="login-error">Password is required <span class="icon-x"></span>
-            </p>
-        </div>
+    <div class="modal-main-section">
+        <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+            <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+            <div class="title-block">
+                <p class="title-text">Log in</p>
+                <p class="close-modal" onclick="closesignin()"><span class="icon-x"></span> </p>
+            </div>
+            <div class="main-block">
+                <!-- EMAIL -->
+                <div class="form-group">
+                    <input type="email" name="email" class="login-field" id="email-field" placeholder="Email Address" ng-model="user.email" required>
+                    <p ng-show="userForm.email.$error.required && !userForm.email.$pristine" class="login-error">Email is required</p>
+                    <p ng-show="userForm.email.$error.email && !userForm.email.$pristine" class="login-error">Email is invalid</p>
+                </div>
+                <!-- PASWWORD -->
+                <div class="form-group">
+                    <input type="password" name="password" class="login-field" id="password-field" placeholder="Password" ng-model="user.password" required>
+                    <p ng-show="userForm.password.$error.required && !userForm.password.$pristine" class="login-error">Password is required</p>
+                </div>
+            </div>
 
-        <div class="invalid-login" ng-show="loginerror"><span class="icon-x"></span> Invalid Credentials</div>
+            <div class="service-error" ng-show="loginerror"><span class="icon-x"></span> Invalid Credentials</div>
+            <button ng-show="false" ng-disabled="userForm.$invalid" id="signinbttn"></button>
 
-        <!-- SUBMIT BUTTON -->
-        <button ng-hide="loading" type="submit" class="form-bttn" ng-disabled="userForm.$invalid">Submit</button>
-        <button ng-show="loading" class="bttn-submitting"><i class="fa fa-spinner fa-spin"></i> Signing in..</button>
-    </form>
+            <div class="bttn-section">
+                <!-- SUBMIT BUTTON -->
+                <div class="submit-bttn" ng-hide="loading" onclick="document.getElementById('signinbttn').click()">Submit</div>
+                <div class="submiting-bttn" ng-show="loading"><i class="fa fa-spinner fa-spin"></i></div>
+                <div class="cancel-bttn" ng-hide="loading" onclick="closesignin()">Cancel</div>
+                <div class="submit-bttn" ng-show="loading">Cancel</div>
+            </div>
+        </form>
+    </div>
 </div>
 
 <!-- signup -->
@@ -37,60 +40,76 @@
     <div ng-show="success" class="userSignupFormSuccess">
         <button class="form-bttn" onclick="closesignup(); opensignin()"><span class="icon-checkmark"></span> Success! Now Login</button>
     </div>
-    <form ng-hide="success" name="userSignupForm" ng-submit="submitForm(userSignupForm.$valid)" novalidate>
-        <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
-        <div class="form-title clearfix">
-            <p>Sign Up</p>
-            <p onclick="closesignup()"><span class="icon-x"></span>
-            </p>
-        </div>
+
+    <div class="modal-main-section" ng-hide="success">
+        <form name="userSignupForm" ng-submit="submitForm(userSignupForm.$valid)" novalidate>
+            <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+            <div class="title-block">
+                <p class="title-text">Sign Up</p>
+                <p class="close-modal" onclick="closesignup()"><span class="icon-x"></span> </p>
+            </div>
+
+            <div class="main-block">
+                <!-- NAME -->
+                <div class="form-group">
+                    <input type="text" name="name" class="login-field" id="signup-name-field" placeholder="Name" ng-model="user.name" ng-minlength="3" ng-maxlength="20" required>
+                    <p ng-show="userSignupForm.name.$error.required && !userSignupForm.name.$pristine" class="login-error">Name is required</p>
+                    <p ng-show="userSignupForm.name.$error.minlength && !userSignupForm.name.$pristine" class="login-error">Min length is 3</p>
+                    <p ng-show="userSignupForm.name.$error.maxlength && !userSignupForm.name.$pristine" class="login-error">Max length is 20</p>
+                </div>
+                <!-- EMAIL -->
+                <div class="form-group">
+                    <input type="email" name="email" class="login-field" id="signup-email-field" placeholder="Email Address" ng-model="user.email" required>
+                    <p ng-show="userSignupForm.email.$error.required && !userSignupForm.email.$pristine" class="login-error">Email is required</p>
+                    <p ng-show="userSignupForm.email.$error.email && !userSignupForm.email.$pristine" class="login-error">Email is invalid</p>
+                </div>
+                <!-- PASSWORD -->
+                <div class="form-group">
+                    <input type="password" name="password" class="login-field" id="signup-password-field" placeholder="Password" ng-model="user.password" ng-minlength="4" ng-maxlength="20" required>
+                    <p ng-show="userSignupForm.password.$error.required && !userSignupForm.password.$pristine" class="login-error">Password is required </p>
+                    <p ng-show="userSignupForm.password.$error.minlength && !userSignupForm.password.$pristine" class="login-error">Min length is 4</p>
+                    <p ng-show="userSignupForm.password.$error.maxlength && !userSignupForm.password.$pristine" class="login-error">Max length is 20</p>
+                </div>
+            </div>
+
+            <button ng-show="false" ng-disabled="userSignupForm.$invalid" id="signupbttn"></button>
+
+            <div class="bttn-section">
+                <!-- SUBMIT BUTTON -->
+                <div class="submit-bttn" ng-hide="loading" onclick="document.getElementById('signupbttn').click()">Submit</div>
+                <div class="submiting-bttn" ng-show="loading"><i class="fa fa-spinner fa-spin"></i></div>
+                <div class="cancel-bttn" ng-hide="loading" onclick="closesignup()">Cancel</div>
+                <div class="submit-bttn" ng-show="loading">Cancel</div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div id="options-container">
+    <div>
+        <button onclick="opensignup()">Sign Up</button>
         <br>
-        <br>
-        <!-- NAME -->
-        <div class="form-group">
-            <input type="text" name="name" class="login-field" id="signup-name-field" placeholder="Name" ng-model="user.name" ng-minlength="3" ng-maxlength="20" required>
-            <p ng-show="userSignupForm.name.$error.required && !userSignupForm.name.$pristine" class="login-error">Name is required <span class="icon-x"></span>
-            </p>
-            <p ng-show="userSignupForm.name.$error.minlength && !userSignupForm.name.$pristine" class="login-error">Min length is 3 <span class="icon-x"></span>
-            </p>
-            <p ng-show="userSignupForm.name.$error.maxlength && !userSignupForm.name.$pristine" class="login-error">Max length is 20 <span class="icon-x"></span>
-            </p>
-        </div>
-        <!-- EMAIL -->
-        <div class="form-group">
-            <input type="email" name="email" class="login-field" id="signup-email-field" placeholder="Email Address" ng-model="user.email" required>
-            <p ng-show="userSignupForm.email.$error.required && !userSignupForm.email.$pristine" class="login-error">Email is required <span class="icon-x"></span>
-            </p>
-            <p ng-show="userSignupForm.email.$error.email && !userSignupForm.email.$pristine" class="login-error">Email is invalid <span class="icon-x"></span>
-            </p>
-        </div>
-        <!-- PASSWORD -->
-        <div class="form-group">
-            <input type="password" name="password" class="login-field" id="signup-password-field" placeholder="Password" ng-model="user.password" ng-minlength="4" ng-maxlength="20" required>
-            <p ng-show="userSignupForm.password.$error.required && !userSignupForm.password.$pristine" class="login-error">Password is required <span class="icon-x"></span>
-            </p>
-            <p ng-show="userSignupForm.password.$error.minlength && !userSignupForm.password.$pristine" class="login-error">Min length is 4 <span class="icon-x"></span>
-            </p>
-            <p ng-show="userSignupForm.password.$error.maxlength && !userSignupForm.password.$pristine" class="login-error">Max length is 20 <span class="icon-x"></span>
-            </p>
-        </div>
-        <br>
-        <!-- SUBMIT BUTTON -->
-        <button ng-hide="loading" type="submit" class="form-bttn" ng-disabled="userSignupForm.$invalid">Sign up</button>
-        <button ng-show="loading" class="bttn-submitting"><i class="fa fa-spinner fa-spin"></i> Signing up..</button>
-    </form>
+        <button onclick="opensignin()">Log in</button>
+    </div>
 </div>
 
 <!-- HEADER AND NAVBAR -->
 <header>
     <nav class="home-headbar">
         <div class="contianer-fluid">
-            <div class="home-headbar-header wrap clearfix">
+            <div class="home-headbar-header wrap clearfix hidden-xs">
                 <a class="home-headbar-logo" href="/">
                     <img src="images/logo.png" class="home-logo" />turns
                 </a>
                 <a href="" class="home-headbar-menulink" onclick="opensignup()"><span class="icon-user2"></span> Sign Up</a>
                 <a href="" class="home-headbar-menulink" onclick="opensignin()"><span class="icon-sign-in"></span> Login</a>
+            </div>
+            <div class="home-mobile-headbar-header wrap clearfix visible-xs">
+                <a class="home-headbar-logo" href="/">
+                    <img src="images/logo.png" class="home-logo" />turns
+                </a>
+                <a class="header-mobile-menu" onclick="openoptions()"><i class="fa fa-bars"></i> </a>
             </div>
         </div>
     </nav>

@@ -1,57 +1,67 @@
 function opensignin() {
+    closeoptions();
+    backgroundcoveropen();
     var login = $('#login-container');
-    var background = $('#background-cover');
 
     login.css({
-        'top': '10em',
-        'z-index': '3'
-    });
-
-    background.css({
-        'z-index': '2',
-        'opacity': '0.75'
+        'visibility': 'visible',
+        'top': '50%',
+        'opacity': '1'
     });
 }
 
 function closesignin() {
+    backgroundcoverclose();
     var login = $('#login-container');
-    var background = $('#background-cover');
 
     login.css({
-        'top': '-100em'
-    });
-
-    background.css({
-        'z-index': '-1',
+        'visibility': 'hidden',
+        'top': '45%',
         'opacity': '0'
     });
 }
 
 function opensignup() {
+    closeoptions();
+    backgroundcoveropen();
     var signup = $('#signup-container');
-    var background = $('#background-cover');
 
     signup.css({
-        'top': '10em',
-        'z-index': '3'
-    });
-
-    background.css({
-        'z-index': '2',
-        'opacity': '0.75'
+        'visibility': 'visible',
+        'top': '50%',
+        'opacity': '1'
     });
 }
 
 function closesignup() {
+    backgroundcoverclose();
     var signup = $('#signup-container');
-    var background = $('#background-cover');
 
     signup.css({
-        'top': '-100em'
+        'visibility': 'hidden',
+        'top': '45%',
+        'opacity': '0'
     });
+}
 
-    background.css({
-        'z-index': '-1',
+function openoptions() {
+    backgroundcoveropen();
+    var options = $('#options-container');
+
+    options.css({
+        'visibility': 'visible',
+        'top': '50%',
+        'opacity': '1'
+    });
+}
+
+function closeoptions() {
+    backgroundcoverclose();
+    var options = $('#options-container');
+
+    options.css({
+        'visibility': 'hidden',
+        'top': '45%',
         'opacity': '0'
     });
 }
