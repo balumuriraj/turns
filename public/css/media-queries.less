@@ -9,6 +9,41 @@
   transform: translateY(-50%);
 }
 
+.boxes(){
+  .item-block {
+    width: 97%;
+    text-align: left;
+    padding: 1.5em 2.5em;
+
+    div:first-child {
+      margin-top: 0em;
+      display: inline-block;
+      width: 7.25em;
+      box-shadow: none;
+
+      p{
+        span{
+          color: #fff;
+          font-size: 2.5em;
+        }
+      }
+    }
+
+    .box-label {
+      display: inline-block;
+      vertical-align: middle;
+      padding-left: 1em;
+      p:first-child {
+        padding: 0;
+      }
+
+      p:nth-child(2) {
+        padding: 0;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 320px) and (max-width: 480px) {
   /* Styles */
 
@@ -38,6 +73,137 @@
 
     .feature-block{
       font-size: 0.85em;
+    }
+  }
+
+  .headbar {
+    box-shadow: none;
+    .headbar-header{
+      .headbar-logo{
+        width: 7em;
+        background: #222;
+        display: inline-block;
+        .logo{
+          padding: 1.75em;
+        }
+      }
+
+      .header-mobile-menu{
+        float: right;
+        vertical-align: middle;
+        text-align: center;
+        color: #fff;
+        font-size: 2.5em;
+        padding: 0.75em 1em;
+        cursor: pointer;
+
+        i:active{
+          position: relative;
+          top: 2px;
+        }
+      }
+
+      button {
+        background: #222;
+        font-size: 2.5em;
+        margin: 0;
+      }
+
+      button:hover{
+        opacity: 0.9;
+      }
+
+      button:active{
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
+
+  .mobile-menu-container{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    color: #fff;
+    z-index: 4;
+
+    .mobile-menu-title{
+      background: #222;
+
+      p{
+        padding: 1em;
+        text-align: center;
+        font-size: 2em;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin: 0;
+      }
+    }
+    .mobile-profile-link{
+      margin: 0em;
+      padding: 2em;
+      background: #fff;
+      color: #333;
+      p{
+        margin: 0;
+      }
+      p:first-child{
+        font-size: 2em;
+      }
+      p:nth-child(2){
+        font-size: 1.5em;
+      }
+    }
+
+    ul{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li{
+        a{
+          text-decoration: none;
+          color: #fff;
+
+          p{
+            font-size: 2em;
+            margin: 0;
+            padding: 1em;
+          }
+        }
+        border-bottom: 1px solid #111;
+      }
+
+      li:hover{
+        background: #333;
+      }
+
+      li:active{
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
+
+  .ngview-section{
+    position: relative;
+    top: 14em;
+    margin: 0em;
+    padding: 0em;
+  }
+
+  /**** All activities page *****/
+
+  .allactivities-page {
+    .all-activities-container {
+      .boxes();
+    }
+  }
+
+  .friends-page {
+    .friends-container{
+      .boxes();
     }
   }
 

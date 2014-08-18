@@ -65,3 +65,7 @@ function closeoptions() {
         'opacity': '0'
     });
 }
+
+function openmenu(){
+    $('#mobile-menu').toggle();
+}

@@ -362,6 +362,7 @@ body {
     cursor: pointer;
     border-radius: 2px;
     border-bottom: 4px solid #fff;
+    border-top: 4px solid #fff;
 
     div:first-child {
       margin-top: 4em;
@@ -607,6 +608,16 @@ body {
       color: #eee;
     }
 
+    .mobile-title{
+      display: inline-block;
+      font-family: 'gothamrm';
+      font-size: 3em;
+      margin: 0;
+      padding: 0;
+      vertical-align: middle;
+      color: #eee;
+    }
+
     .headbar-account{
       float: right;
       text-decoration: none;
@@ -706,6 +717,21 @@ body {
 
   }
 
+}
+
+.breadcrumb-bar{
+  background: #fff;
+  color: #555;
+  border-radius: 0;
+  width: 100%;
+  position: fixed;
+  top: 7em;
+  z-index: 1;
+  p{
+    font-size: 2em;
+    margin: 0;
+    padding: 0.5em 1em;
+  }
 }
 
 .headbar-account-active {

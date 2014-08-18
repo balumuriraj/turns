@@ -1,3 +1,4 @@
+<div ng-include="'/js/partials/menus/mobile-menu.html'"></div>
 <header>
     <nav class="headbar">
         <div class="contianer-fluid">
@@ -5,10 +6,10 @@
                 <div class="headbar-logo" href="/">
                     <img src="images/logo.png" class="logo" />
                 </div>
-                <div id="page-title"></div>
+                <div id="page-title" class="hidden-xs"></div>
                 <!-- <a href="" class="headbar-account" ng-click="signout()"><span class="icon-sign-out"></span></a> -->
 
-                <a href="" class="headbar-account" id="headbar-account" onclick="headbaraccount()">
+                <a href="" class="headbar-account hidden-xs" id="headbar-account" onclick="headbaraccount()">
                     <div><img src="images/svg/avatar.svg" /> </div>
                     <div>
                         <p>{{userdetails.name}}</p>
@@ -17,11 +18,15 @@
                     <div><span class="icon-angle-down"></span></div>
                 </a>
 
-                <button class="clearfix" ng-click="addturn()"><i class="fa fa-plus"></i> Add Turn</button>
+                <a class="header-mobile-menu visible-xs" onclick="openmenu()"><i class="fa fa-bars"></i> </a>
+                <button class="clearfix visible-xs" ng-click="addturn()"><i class="fa fa-plus"></i></button>
+
+                <button class="clearfix hidden-xs" ng-click="addturn()"><i class="fa fa-plus"></i> Add Turn</button>
 
             </div>
         </div>
     </nav>
+    <div class="breadcrumb-bar visible-xs"><p id="mobile-page-title"></p></div>
 </header>
 
 <div class="account-dropdown-menu" id="dropdownmenu">
@@ -31,7 +36,7 @@
     </ul>
 </div>
 
-<div class="side-menu-container">
+<div class="side-menu-container hidden-xs">
     <nav class="side-menu">
         <ul>
             <li id="dashboard">

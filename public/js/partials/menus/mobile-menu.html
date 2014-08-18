@@ -1,0 +1,43 @@
+<nav class="mobile-menu-container" id="mobile-menu">
+    <div class="mobile-menu-title">
+        <p>Menu</p>
+    </div>
+    <div class="mobile-profile-link">
+        <p>{{userdetails.name}}</p>
+        <p>{{userdetails.email}}</p>
+    </div>
+    <ul>
+        <li>
+            <a href="#/dashboard" class="mobile-menu-link">
+                <p><i class="fa fa-home"></i> Dashboard</p>
+            </a>
+        </li>
+        <li>
+            <a href="#/activities/allActivities" class="mobile-menu-link">
+                <p><i class="fa fa-rocket"></i> Activities</p>
+            </a>
+        </li>
+        <li>
+            <a href="#/friends" class="mobile-menu-link">
+                <p><i class="fa fa-users"></i> Friends</p>
+            </a>
+        </li>
+        <li>
+            <a href="#/settings" class="mobile-menu-link">
+                <p><i class="fa fa-cog"></i> Settings</p>
+            </a>
+        </li>
+        <li>
+            <a href="" ng-click="signout()">
+                <p><i class="fa fa-sign-out"></i> Sign Out</p>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<script type="text/javascript">
+    $("#mobile-menu").hide();
+    $(".mobile-menu-link").click(function(){
+        $("#mobile-menu").toggle();
+    });
+</script>
